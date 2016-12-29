@@ -1,11 +1,16 @@
-<div class="container" *ngIf="items[0] == 200">
+<div class="container"
+     *ngIf="items[0] == 200"
+     infinite-scroll
+     [infiniteScrollDistance]="scrollDistance"
+     [infiniteScrollThrottle]="throttle"
+     (scrolled)="onScrollDown()">
   <div *ngFor="let item of items[1]" class="col-xs-12 col-sm-6 col-md-4 col-lg-3" align="center">
     <div class="thumbnail fixed-card">
       <div class="caption">
         <img src="{{item.Cover}}" class="img-responsive" alt="Responsive image">
         <h3>{{item.Title}}</h3>
         <p>活動日期： {{item.Begin}} - {{item.End}}</p>
-        <a class="btn btn-primary btn-sm" role="button" routerLink="/{{year}}/{{item.Serial}}">更多詳情</a>
+        <a class="btn btn-primary btn-sm" role="button" routerLink="/{{item.Begin.substring(0, 4)}}/{{item.Serial}}">更多詳情</a>
       </div>
     </div>
   </div>
